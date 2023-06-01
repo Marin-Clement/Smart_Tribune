@@ -38,7 +38,7 @@ async function isSiteDown(url) {
     
     await browser.close();
 
-    return response.status() === 404;
+    return response.status() !== 200;
 }
 
 
