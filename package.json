@@ -1,0 +1,16 @@
+{
+  "name": "hackhaton",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "franc": "^6.1.0",
+    "puppeteer": "^20.5.0"
+  }
+}
