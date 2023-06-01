@@ -19,10 +19,25 @@ const url = 'https://smart-tribune-sandbox.ovh/subdomain/hackathon-laplateforme-
 // write func can be the main and the query can be change
 async function write() {
   const siteDown = await isSiteDown(url);
-  const elementPresent = await isElementPresent(url);
-  const textOk = await isTextOk(url);
-  
+  let elementPresent = false;
+  let textOk = false;
 
+  if (siteDown === true) {
+    elementPresent = false;
+    textOk = false;
+  }
+
+  else {
+    elementPresent = await isElementPresent(url);
+    if (elementPresent === true) {
+      textOk = false;
+    }
+    else {
+      textOk = await isTextOk(url);
+    }
+  }
+
+  console.log(siteDown + " " + elementPresent + " " + textOk);
 }
 
 
@@ -82,7 +97,6 @@ async function isTextOk(url, text = "Comment pouvons-nous vous aider ?", timeout
     }
   
     await browser.close();
-    console.log("isPresent :" + isPresent);
 
     return !isPresent;
 }
