@@ -42,7 +42,7 @@ async function write() {
 
 
 async function isSiteDown(url) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless: "new"});
     const page = await browser.newPage();
     const response = await page.goto(url);
     
@@ -54,7 +54,7 @@ async function isSiteDown(url) {
 
 async function isElementPresent(url, selector = "#st-faq-root", timeout = 30000) {
     let element = null;
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless: "new"});
     const page = await browser.newPage();
     
     try {
@@ -75,7 +75,7 @@ async function isElementPresent(url, selector = "#st-faq-root", timeout = 30000)
 
 async function isTextOk(url, text = "Comment pouvons-nous vous aider ?", timeout = 30000) {
     let isPresent = false;
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless: "new"});
     const page = await browser.newPage();
   
     try {
