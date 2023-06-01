@@ -1,6 +1,7 @@
 import {franc} from 'franc';
 import puppeteer from 'puppeteer';
 
+
 // Ok
 const url = 'https://smart-tribune-sandbox.ovh/subdomain/hackathon-laplateforme-2023/faq-success.html';
 
@@ -14,19 +15,14 @@ const url = 'https://smart-tribune-sandbox.ovh/subdomain/hackathon-laplateforme-
 //const url = 'https://smart-tribune-sandbox.ovh/subdomain/hackathon-laplateforme-2023/faq-text-not-found.html';
 
 
-async function main() {
-    if (await isSiteDown(url)) {
-      return 1;
-    }
-    if (await isElementPresent(url)) {
-        return 2;
-    }
-    if (await isTextOk(url) === false) {
-      return 3;
-    }
-    else {
-      return 0;
-    }
+
+// write func can be the main and the query can be change
+async function write() {
+  const siteDown = await isSiteDown(url);
+  const elementPresent = await isElementPresent(url);
+  const textOk = await isTextOk(url);
+  
+
 }
 
 
@@ -34,7 +30,6 @@ async function isSiteDown(url) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     const response = await page.goto(url);
-    console.log(response.status());
     
     await browser.close();
 
@@ -87,14 +82,34 @@ async function isTextOk(url, text = "Comment pouvons-nous vous aider ?", timeout
     }
   
     await browser.close();
-  
-    return isPresent;
+    console.log("isPresent :" + isPresent);
+
+    return !isPresent;
 }
-  
-  
 
 
-main().then(console.log);
+write();
+
+/*
+
+async function main() {
+    if (await isSiteDown(url)) {
+      return 1;
+    }
+    if (await isElementPresent(url)) {
+        return 2;
+    }
+    if (await isTextOk(url) === true) {
+      return 3;
+    }
+    else {
+      return 0;
+    }
+}
+
+ */
+
+//main().then(console.log);
 
 //isSiteDown(url).then(console.log);
 //isElementPresent(url).then(console.log);
