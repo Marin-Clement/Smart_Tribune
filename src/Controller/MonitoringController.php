@@ -12,7 +12,7 @@ class MonitoringController extends AbstractController
     public string $port = '3306';
     public string $dbname = 'smart_tribune';
     public string $username = 'root';
-    public string $password = 'Minecraft01@';
+    public string $password = '';
 
     public array $Urls = [];
     public int $errorNum = 0;
